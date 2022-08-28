@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import firebaseApp from './common/firebaseApp'
+import { FirebaseAppProvider } from 'reactfire'
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import theme from './common/theme'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { UIContextProvider } from './components/UIContext'
+import { Root } from './components/Root'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <FirebaseAppProvider firebaseApp={firebaseApp}>
+      <ThemeProvider theme={theme}>
+        <Router basename={process.env.PUBLIC_URL || '/'}>
+          <CssBaseline />
+          <UIContextProvider>
+            <Root />
+          </UIContextProvider>
+        </Router>
+      </ThemeProvider>
+    </FirebaseAppProvider>
+  )
 }
 
-export default App;
+export default App

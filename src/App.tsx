@@ -1,4 +1,3 @@
-import './App.css'
 import firebaseApp from './common/firebaseApp'
 import { FirebaseAppProvider } from 'reactfire'
 import { CssBaseline, ThemeProvider } from '@mui/material'

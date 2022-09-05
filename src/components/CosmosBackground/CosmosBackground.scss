@@ -1,0 +1,81 @@
+@function multiple-box-shadow($n) {
+  $value: "#{random(2000)}px #{random(2000)}px #FFF";
+  @for $i from 2 through $n {
+    $value: "#{$value} , #{random(2000)}px #{random(2000)}px #FFF";
+  }
+  @return unquote($value);
+}
+
+$small-star-size: 1px;
+$medium-star-size: 2px;
+$large-star-size: 3px;
+
+$small-star-speed: 50s;
+$medium-star-speed: 100s;
+$large-star-speed: 150s;
+
+$small-star-shadows: multiple-box-shadow(700);
+$medium-star-shadows: multiple-box-shadow(200);
+$large-star-shadows: multiple-box-shadow(100);
+
+.stars {
+  background: transparent;
+  z-index: -1;
+  animation: animStar linear infinite;
+  position: absolute;
+
+  &:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    background: transparent;
+  }
+
+  &--small {
+    width: $small-star-size;
+    height: $small-star-size;
+    box-shadow: $small-star-shadows;
+    animation-duration: $small-star-speed;
+
+    &:after {
+      width: $small-star-size;
+      height: $small-star-size;
+      box-shadow: $small-star-shadows;
+    }
+  }
+
+  &--medium {
+    width: $medium-star-size;
+    height: $medium-star-size;
+    box-shadow: $medium-star-shadows;
+    animation-duration: $medium-star-speed;
+
+    &:after {
+      width: $medium-star-size;
+      height: $medium-star-size;
+      box-shadow: $medium-star-shadows;
+    }
+  }
+
+  &--large {
+    width: $large-star-size;
+    height: $large-star-size;
+    box-shadow: $large-star-shadows;
+    animation-duration: $large-star-speed;
+
+    &:after {
+      width: $large-star-size;
+      height: $large-star-size;
+      box-shadow: $large-star-shadows;
+    }
+  }
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}

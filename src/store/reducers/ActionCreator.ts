@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react'
+
 import {
   AuthErrorCodes,
   getAuth,
@@ -5,12 +7,16 @@ import {
   signInWithPopup,
   FacebookAuthProvider,
   signOut,
+  setPersistence,
+  browserLocalPersistence,
+  createUserWithEmailAndPassword,
+  updateProfile,
 } from 'firebase/auth'
+
+import { AlertProps } from '../../components/UIContext'
+import { FirebaseErrorMessage } from '../../types/firebaseError'
 import { AppDispatch } from '../store'
 import { userSlice } from './UserSlice'
-import { FirebaseErrorMessage } from '../../types/firebaseError'
-import { Dispatch, SetStateAction } from 'react'
-import { AlertProps } from '../../components/UIContext'
 
 const { setUser } = userSlice.actions
 
@@ -42,6 +48,44 @@ export const getAuthError = (errorCode: string) => {
   }
 }
 
+export const signUp =
+  (
+    email: string,
+    password: string,
+    fullName: string,
+    setAlert: Dispatch<SetStateAction<AlertProps>>,
+    onSuccess?: () => void
+  ) =>
+  async (dispatch: AppDispatch) => {
+    try {
+      const auth = getAuth()
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      const { user } = userCredential
+
+      await updateProfile(user, {
+        displayName: fullName,
+      })
+
+      dispatch(setUser(user))
+
+      if (onSuccess) onSuccess()
+
+      setAlert({
+        show: true,
+        severity: 'success',
+        message: 'Registration is successful. Welcome on board 🚀',
+      })
+    } catch (error: any) {
+      const errorMessage = getAuthError(error.code)
+
+      setAlert({
+        show: true,
+        severity: 'error',
+        message: errorMessage,
+      })
+    }
+  }
+
 export const signInByEmail =
   (
     email: string,
@@ -52,6 +96,7 @@ export const signInByEmail =
   async (dispatch: AppDispatch) => {
     try {
       const auth = getAuth()
+      await setPersistence(auth, browserLocalPersistence)
       const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
       dispatch(setUser(userCredential.user))
@@ -110,11 +155,13 @@ export const logOut =
   async (dispatch: AppDispatch) => {
     try {
       const auth = getAuth()
+      console.log(auth.currentUser)
 
       await signOut(auth)
       dispatch(setUser(null))
       if (setAnchorEl) setAnchorEl(null)
       if (navigate) navigate('./')
+      console.log(auth.currentUser)
 
       setAlert({
         show: true,

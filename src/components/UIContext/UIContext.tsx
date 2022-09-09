@@ -1,7 +1,8 @@
 import React, { createContext, useState } from 'react'
-import { Alert, AlertColor } from '@mui/material'
-import { Snackbar, SnackbarOrigin } from '@mui/material'
+
+import { Alert, AlertColor, Snackbar, SnackbarOrigin } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+
 import theme from '../../common/theme'
 
 export const UIContext = createContext<UIContextProps>({} as UIContextProps)
@@ -64,12 +65,23 @@ export const useStyles = makeStyles({
   linkStyle: {
     textDecoration: 'none',
     color: theme.palette.light.main,
+    lineHeight: 1,
     ...hoverMainColor,
   },
   modalContainer: {
     position: 'relative',
     backgroundColor: '#fff',
     height: 'fit-content',
+  },
+  signScreen: {
+    overflow: 'hidden',
+    minHeight: '100vh',
+  },
+  signScreenImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    position: 'absolute',
   },
 })
 

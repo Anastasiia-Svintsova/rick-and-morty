@@ -1,10 +1,11 @@
-import firebaseApp from './common/firebaseApp'
-import { FirebaseAppProvider } from 'reactfire'
 import { CssBaseline, ThemeProvider } from '@mui/material'
-import theme from './common/theme'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { UIContextProvider } from './components/UIContext'
+import { FirebaseAppProvider } from 'reactfire'
+
+import firebaseApp from './common/firebaseApp'
+import theme from './common/theme'
 import { Root } from './components/Root'
+import { UIContextProvider } from './components/UIContext'
 
 function App() {
   return (

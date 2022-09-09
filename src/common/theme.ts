@@ -64,5 +64,14 @@ theme.typography.h4 = {
     fontSize: 18,
   },
 }
+theme.typography.h3 = {
+  fontSize: 40,
+  fontWeight: 'bold',
+  textAlign: 'center',
+
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 30,
+  },
+}
 
 export default theme

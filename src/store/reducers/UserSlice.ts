@@ -1,15 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { User } from 'firebase/auth'
 
-const LOCALE_STORAGE_DATA = localStorage.getItem('user')
-const USER = LOCALE_STORAGE_DATA ? JSON.parse(LOCALE_STORAGE_DATA) : null
-
 interface State {
   user: null | User
+  isUserDataLoading: boolean
 }
 
 const initialState: State = {
-  user: USER,
+  user: null,
+  isUserDataLoading: true,
 }
 
 export const userSlice = createSlice({
@@ -17,8 +16,8 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action: PayloadAction<null | User>) {
-      localStorage.setItem('user', JSON.stringify(action.payload))
       state.user = action.payload
+      state.isUserDataLoading = false
     },
   },
 })

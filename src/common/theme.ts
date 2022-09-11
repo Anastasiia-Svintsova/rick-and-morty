@@ -73,5 +73,17 @@ theme.typography.h3 = {
     fontSize: 30,
   },
 }
+theme.typography.subtitle1 = {
+  fontFamily: ['Bangers', 'sans-serif'].join(','),
+  fontSize: 18,
+  textAlign: 'center',
+  textTransform: 'uppercase',
+  letterSpacing: 4,
+  fontWeight: 'normal',
+
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 15,
+  },
+}
 
 export default theme

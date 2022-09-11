@@ -40,7 +40,8 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onSuccess }) => {
 
   const handleClickShowPassword = () => setShowPassword(!showPassword)
 
-  const handleClickShowRepeatPassword = () => setShowRepeatPassword(!showRepeatPassword)
+  const handleClickShowRepeatPassword = () =>
+    setShowRepeatPassword(!showRepeatPassword)
 
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
@@ -63,7 +64,14 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onSuccess }) => {
       }}
       validationSchema={signUpValidationSchema}
     >
-      {({ submitForm, isSubmitting, values, handleChange, errors, touched }) => (
+      {({
+        submitForm,
+        isSubmitting,
+        values,
+        handleChange,
+        errors,
+        touched,
+      }) => (
         <Form>
           <Box className={classes.flexColumn} gap={5}>
             <Field
@@ -94,7 +102,9 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onSuccess }) => {
               color='info'
               focused
               error={touched.fullName && !!errors.fullName}
-              helperText={touched.fullName && !!errors.fullName && errors.fullName}
+              helperText={
+                touched.fullName && !!errors.fullName && errors.fullName
+              }
               value={values.fullName}
               onChange={handleChange}
               InputProps={{ disableUnderline: true }}
@@ -188,6 +198,7 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onSuccess }) => {
               disabled={isSubmitting}
               onClick={submitForm}
               variant='contained'
+              type='submit'
             />
 
             <MainButton

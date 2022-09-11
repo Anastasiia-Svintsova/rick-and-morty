@@ -15,10 +15,14 @@ import {
 
 import { AlertProps } from '../../components/UIContext'
 import { FirebaseErrorMessage } from '../../types/firebaseError'
+import { request } from '../../utils/graphql'
+import { GET_CHARACTERS } from '../../utils/queries'
 import { AppDispatch } from '../store'
+import { characterSlice } from './CharacterSlice'
 import { userSlice } from './UserSlice'
 
 const { setUser } = userSlice.actions
+const { setCharacters } = characterSlice.actions
 
 export const getAuthError = (errorCode: string) => {
   switch (errorCode) {
@@ -59,7 +63,11 @@ export const signUp =
   async (dispatch: AppDispatch) => {
     try {
       const auth = getAuth()
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      )
       const { user } = userCredential
 
       await updateProfile(user, {
@@ -97,7 +105,11 @@ export const signInByEmail =
     try {
       const auth = getAuth()
       await setPersistence(auth, browserLocalPersistence)
-      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      )
 
       dispatch(setUser(userCredential.user))
 
@@ -176,5 +188,16 @@ export const logOut =
         severity: 'error',
         message: errorMessage,
       })
+    }
+  }
+
+export const getCharacters =
+  (page = 1, name = '') =>
+  async (dispatch: AppDispatch) => {
+    try {
+      const data = await request(GET_CHARACTERS, { page, name })
+      dispatch(setCharacters(data.characters))
+    } catch (error: any) {
+      console.log(error)
     }
   }

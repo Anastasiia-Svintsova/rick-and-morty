@@ -48,9 +48,16 @@ export const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
   },
+  flexGrow: {
+    flexGrow: 1,
+  },
   alignCenter: {
     display: 'flex',
     alignItems: 'center',
+  },
+  alignEnd: {
+    display: 'flex',
+    alignItems: 'flex-end',
   },
   justifyCenter: {
     display: 'flex',

@@ -34,8 +34,20 @@ export const SignInModal: FC = () => {
       sx={{ overflowY: 'scroll' }}
     >
       <Fade in={isModalOpen}>
-        <Grid container justifyContent='center' alignItems='center' className={classes.fullHeight}>
-          <Grid item md={6} sm={7} xs={11} lg={5} className={classes.modalContainer}>
+        <Grid
+          container
+          justifyContent='center'
+          alignItems='center'
+          className={classes.fullHeight}
+        >
+          <Grid
+            item
+            md={6}
+            sm={7}
+            xs={11}
+            lg={5}
+            className={classes.modalContainer}
+          >
             <CloseButton onClick={handleClose} />
             <Box px={3} py={7}>
               <Typography color='primary' variant='h4' pb={4}>
@@ -46,7 +58,11 @@ export const SignInModal: FC = () => {
               <Box className={classes.justifyCenter} pt={4}>
                 <Typography>Don&apos;t have an account?&nbsp;</Typography>
 
-                <Link to='/signUp' className={classes.linkStyle} onClick={handleClose}>
+                <Link
+                  to='/signUp'
+                  className={classes.linkStyle}
+                  onClick={handleClose}
+                >
                   <Typography color='primary'>Register</Typography>
                 </Link>
               </Box>

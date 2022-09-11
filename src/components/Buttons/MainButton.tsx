@@ -13,9 +13,11 @@ export const MainButton: FC<MainButtonProps> = ({
   onClick,
   variant = 'contained',
   color = 'primary',
+  type = 'button',
 }) => {
   return (
     <Button
+      type={type}
       fullWidth={fullWidth}
       disabled={disabled}
       onClick={onClick}

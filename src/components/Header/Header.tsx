@@ -1,10 +1,8 @@
 import { FC, MouseEvent, useContext, useState } from 'react'
 
-import AccountCircle from '@mui/icons-material/AccountCircle'
 import HomeIcon from '@mui/icons-material/Home'
 import {
   AppBar,
-  Avatar,
   Box,
   Button,
   IconButton,
@@ -24,28 +22,32 @@ import { commonSlice } from '../../store/reducers/CommonSlice'
 import { CosmosBackground } from '../CosmosBackground'
 import { SignInModal } from '../modals/SignInModal'
 import { useStyles, UIContext } from '../UIContext'
+import { UserAvatar } from '../UserAvatar'
 
 export const Header: FC = () => {
   const classes = useStyles()
   const isMobile = useMediaQuery(MEDIA_QUERY_MOBILE)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const { user, isUserDataLoading } = useAppSelector((state) => state.userReducer)
+  const { user, isUserDataLoading } = useAppSelector(
+    (state) => state.userReducer
+  )
   const { openModal } = commonSlice.actions
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const { setAlert } = useContext(UIContext)
 
   const handleOpenModal = () => dispatch(openModal())
 
-  const handleMenu = (event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)
+  const handleMenu = (event: MouseEvent<HTMLElement>) =>
+    setAnchorEl(event.currentTarget)
 
   const handleClose = () => setAnchorEl(null)
 
   const handleSignOut = () => dispatch(logOut(setAlert, navigate, handleClose))
 
   return (
-    <Box overflow='hidden'>
-      <AppBar color='secondary'>
+    <Box>
+      <AppBar color='secondary' sx={{ overflow: 'hidden' }}>
         <CosmosBackground />
         <Toolbar className={classes.space}>
           <Box className={classes.alignCenter} sx={{ minHeight: 85 }}>
@@ -75,14 +77,7 @@ export const Header: FC = () => {
                       onClick={handleMenu}
                       color='inherit'
                     >
-                      {user.photoURL ? (
-                        <Avatar
-                          alt='User avatar'
-                          src='https://graph.facebook.com/5076560505798093/picture'
-                        />
-                      ) : (
-                        <AccountCircle fontSize='large' />
-                      )}
+                      <UserAvatar user={user} />
                     </IconButton>
                     <Menu
                       id='menu-appbar'
@@ -96,7 +91,11 @@ export const Header: FC = () => {
                   </Box>
                 ) : (
                   <Button variant='text' onClick={handleOpenModal}>
-                    <Typography variant='button' className={classes.linkStyle} fontSize={16}>
+                    <Typography
+                      variant='button'
+                      className={classes.linkStyle}
+                      fontSize={16}
+                    >
                       Login
                     </Typography>
                   </Button>

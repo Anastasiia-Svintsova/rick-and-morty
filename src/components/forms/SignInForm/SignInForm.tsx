@@ -15,7 +15,10 @@ import { Field, Form, Formik } from 'formik'
 
 import { signInValidationSchema } from '../../../common/validation'
 import { useAppDispatch } from '../../../store/hooks/reduxHooks'
-import { signInByEmail, signInByFacebook } from '../../../store/reducers/ActionCreator'
+import {
+  signInByEmail,
+  signInByFacebook,
+} from '../../../store/reducers/ActionCreator'
 import { MainButton } from '../../Buttons/MainButton'
 import { UIContext, useStyles } from '../../UIContext'
 
@@ -58,7 +61,14 @@ export const SignInForm: FC<Props> = ({ onSuccess }) => {
       }}
       validationSchema={signInValidationSchema}
     >
-      {({ submitForm, isSubmitting, values, handleChange, errors, touched }) => (
+      {({
+        submitForm,
+        isSubmitting,
+        values,
+        handleChange,
+        errors,
+        touched,
+      }) => (
         <Form>
           <Box className={classes.flexColumn} gap='50px'>
             <Field
@@ -124,6 +134,7 @@ export const SignInForm: FC<Props> = ({ onSuccess }) => {
               disabled={isSubmitting}
               onClick={submitForm}
               variant='contained'
+              type='submit'
             />
 
             <MainButton

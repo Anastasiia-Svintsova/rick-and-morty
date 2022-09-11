@@ -8,7 +8,10 @@ export const signInValidationSchema = Yup.object().shape({
 export const signUpValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   fullName: Yup.string()
-    .matches(/^\p{Lu}\p{Ll}+(?: \p{Lu}\p{Ll}+)+$/u, 'Please enter a valid full name')
+    .matches(
+      /^\p{Lu}\p{Ll}+(?: \p{Lu}\p{Ll}+)+$/u,
+      'Please enter a valid full name'
+    )
     .required('Required'),
   password: Yup.string()
     .required('Required')

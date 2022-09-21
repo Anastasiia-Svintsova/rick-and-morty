@@ -1,22 +1,22 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState } from 'react';
 
-import { Alert, AlertColor, Snackbar, SnackbarOrigin } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import { Alert, AlertColor, Snackbar, SnackbarOrigin } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
-import theme from '../../common/theme'
+import theme from '../../common/theme';
 
-export const UIContext = createContext<UIContextProps>({} as UIContextProps)
+export const UIContext = createContext<UIContextProps>({} as UIContextProps);
 
 interface UIContextProps {
-  setAlert: React.Dispatch<React.SetStateAction<AlertProps>>
-  setUserName: React.Dispatch<React.SetStateAction<string | null>>
-  userName: string | null
+  setAlert: React.Dispatch<React.SetStateAction<AlertProps>>;
+  setUserName: React.Dispatch<React.SetStateAction<string | null>>;
+  userName: string | null;
 }
 export interface AlertProps {
-  show: boolean
-  severity?: AlertColor
-  message?: string
-  anchorOrigin?: SnackbarOrigin
+  show: boolean;
+  severity?: AlertColor;
+  message?: string;
+  anchorOrigin?: SnackbarOrigin;
 }
 
 const hoverMainColor = {
@@ -25,7 +25,7 @@ const hoverMainColor = {
   '&:hover': {
     color: theme.palette.primary.main,
   },
-}
+};
 
 export const useStyles = makeStyles({
   root: {
@@ -90,7 +90,13 @@ export const useStyles = makeStyles({
     objectFit: 'cover',
     position: 'absolute',
   },
-})
+  cardHover: {
+    '&:hover': {
+      boxShadow: `0px 8px 10px 1px rgba(33,33,33,.2)`,
+      cursor: 'pointer',
+    },
+  },
+});
 
 export const UIContextProvider: React.FC<any> = ({ children }) => {
   const [alert, setAlert] = useState<AlertProps>({
@@ -101,12 +107,12 @@ export const UIContextProvider: React.FC<any> = ({ children }) => {
       vertical: 'bottom',
       horizontal: 'left',
     },
-  })
-  const [userName, setUserName] = useState<string | null>(null)
+  });
+  const [userName, setUserName] = useState<string | null>(null);
   const handleClose = () =>
     setAlert({
       show: false,
-    })
+    });
   return (
     <UIContext.Provider value={{ userName, setAlert, setUserName }}>
       {children}
@@ -121,5 +127,5 @@ export const UIContextProvider: React.FC<any> = ({ children }) => {
         </Alert>
       </Snackbar>
     </UIContext.Provider>
-  )
-}
+  );
+};

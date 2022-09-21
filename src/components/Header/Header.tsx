@@ -1,6 +1,6 @@
-import { FC, MouseEvent, useContext, useState } from 'react'
+import { FC, MouseEvent, useContext, useState } from 'react';
 
-import HomeIcon from '@mui/icons-material/Home'
+import HomeIcon from '@mui/icons-material/Home';
 import {
   AppBar,
   Box,
@@ -10,40 +10,40 @@ import {
   MenuItem,
   Toolbar,
   Typography,
-} from '@mui/material'
-import CircularProgress from '@mui/material/CircularProgress'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import { Link, useNavigate } from 'react-router-dom'
+} from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { MEDIA_QUERY_MOBILE } from '../../common/constants'
-import { useAppDispatch, useAppSelector } from '../../store/hooks/reduxHooks'
-import { logOut } from '../../store/reducers/ActionCreator'
-import { commonSlice } from '../../store/reducers/CommonSlice'
-import { CosmosBackground } from '../CosmosBackground'
-import { SignInModal } from '../modals/SignInModal'
-import { useStyles, UIContext } from '../UIContext'
-import { UserAvatar } from '../UserAvatar'
+import { MEDIA_QUERY_MOBILE } from '../../common/constants';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/reduxHooks';
+import { logOut } from '../../store/reducers/ActionCreator';
+import { commonSlice } from '../../store/reducers/CommonSlice';
+import { CosmosBackground } from '../CosmosBackground';
+import { SignInModal } from '../modals/SignInModal';
+import { useStyles, UIContext } from '../UIContext';
+import { UserAvatar } from '../UserAvatar';
 
 export const Header: FC = () => {
-  const classes = useStyles()
-  const isMobile = useMediaQuery(MEDIA_QUERY_MOBILE)
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
+  const classes = useStyles();
+  const isMobile = useMediaQuery(MEDIA_QUERY_MOBILE);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { user, isUserDataLoading } = useAppSelector(
     (state) => state.userReducer
-  )
-  const { openModal } = commonSlice.actions
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const { setAlert } = useContext(UIContext)
+  );
+  const { openModal } = commonSlice.actions;
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { setAlert } = useContext(UIContext);
 
-  const handleOpenModal = () => dispatch(openModal())
+  const handleOpenModal = () => dispatch(openModal());
 
   const handleMenu = (event: MouseEvent<HTMLElement>) =>
-    setAnchorEl(event.currentTarget)
+    setAnchorEl(event.currentTarget);
 
-  const handleClose = () => setAnchorEl(null)
+  const handleClose = () => setAnchorEl(null);
 
-  const handleSignOut = () => dispatch(logOut(setAlert, navigate, handleClose))
+  const handleSignOut = () => dispatch(logOut(setAlert, navigate, handleClose));
 
   return (
     <Box>
@@ -111,7 +111,7 @@ export const Header: FC = () => {
         <SignInModal />
       </AppBar>
     </Box>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

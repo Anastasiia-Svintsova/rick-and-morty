@@ -1,11 +1,11 @@
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { FirebaseAppProvider } from 'reactfire'
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { FirebaseAppProvider } from 'reactfire';
 
-import firebaseApp from './common/firebaseApp'
-import theme from './common/theme'
-import { Root } from './components/Root'
-import { UIContextProvider } from './components/UIContext'
+import firebaseApp from './common/firebaseApp';
+import theme from './common/theme';
+import { Root } from './components/Root';
+import { UIContextProvider } from './components/UIContext';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         </Router>
       </ThemeProvider>
     </FirebaseAppProvider>
-  )
+  );
 }
 
-export default App
+export default App;

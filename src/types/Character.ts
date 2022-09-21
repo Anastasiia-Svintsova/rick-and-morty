@@ -1,18 +1,18 @@
 export interface Character {
-  id: number
-  name: string
-  image: string
-  status: string
-  species: string
-  gender: string
+  id: number;
+  name: string;
+  image: string;
+  status: string;
+  species: string;
+  gender: string;
 }
 
 export interface CharactersQuery {
   info: {
-    count: number
-    pages: number
-  }
-  results: Character[]
+    count: number;
+    pages: number;
+  };
+  results: Character[];
 }
 
 export enum CharacterStatus {

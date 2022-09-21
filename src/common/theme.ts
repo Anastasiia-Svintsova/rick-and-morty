@@ -1,11 +1,11 @@
-import { createTheme } from '@mui/material/styles'
+import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Palette {
-    light: Palette['primary']
+    light: Palette['primary'];
   }
   interface PaletteOptions {
-    light: PaletteOptions['primary']
+    light: PaletteOptions['primary'];
   }
 }
 
@@ -42,7 +42,7 @@ const theme = createTheme({
       color: '#fff',
     },
   },
-})
+});
 
 theme.typography.h1 = {
   fontStyle: 'italic',
@@ -53,7 +53,7 @@ theme.typography.h1 = {
   [theme.breakpoints.down('sm')]: {
     fontSize: 30,
   },
-}
+};
 
 theme.typography.h4 = {
   fontSize: 20,
@@ -63,7 +63,7 @@ theme.typography.h4 = {
   [theme.breakpoints.down('sm')]: {
     fontSize: 18,
   },
-}
+};
 theme.typography.h3 = {
   fontSize: 40,
   fontWeight: 'bold',
@@ -72,7 +72,7 @@ theme.typography.h3 = {
   [theme.breakpoints.down('sm')]: {
     fontSize: 30,
   },
-}
+};
 theme.typography.subtitle1 = {
   fontFamily: ['Bangers', 'sans-serif'].join(','),
   fontSize: 18,
@@ -84,6 +84,6 @@ theme.typography.subtitle1 = {
   [theme.breakpoints.down('sm')]: {
     fontSize: 15,
   },
-}
+};
 
-export default theme
+export default theme;

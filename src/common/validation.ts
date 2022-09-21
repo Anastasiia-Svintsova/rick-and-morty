@@ -1,9 +1,9 @@
-import * as Yup from 'yup'
+import * as Yup from 'yup';
 
 export const signInValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string().required('Required'),
-})
+});
 
 export const signUpValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -19,4 +19,4 @@ export const signUpValidationSchema = Yup.object().shape({
   repeatPassword: Yup.string()
     .required('Required')
     .oneOf([Yup.ref('password'), null], 'Passwords do not match'),
-})
+});

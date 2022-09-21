@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import { Button, Typography, ButtonProps } from '@mui/material'
+import { Button, Typography, ButtonProps } from '@mui/material';
 
 interface MainButtonProps extends ButtonProps {
-  text: string
+  text: string;
 }
 
 export const MainButton: FC<MainButtonProps> = ({
@@ -28,7 +28,7 @@ export const MainButton: FC<MainButtonProps> = ({
         {text}
       </Typography>
     </Button>
-  )
-}
+  );
+};
 
-export default MainButton
+export default MainButton;

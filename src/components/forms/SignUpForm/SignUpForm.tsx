@@ -1,6 +1,6 @@
-import { FC, useState, MouseEvent, useContext } from 'react'
+import { FC, useState, MouseEvent, useContext } from 'react';
 
-import { VisibilityOff, Visibility } from '@mui/icons-material'
+import { VisibilityOff, Visibility } from '@mui/icons-material';
 import {
   Box,
   FilledInput,
@@ -10,42 +10,45 @@ import {
   InputAdornment,
   InputLabel,
   TextField,
-} from '@mui/material'
-import { Formik, Form, Field } from 'formik'
+} from '@mui/material';
+import { Formik, Form, Field } from 'formik';
 
-import { signUpValidationSchema } from '../../../common/validation'
-import { MainButton } from '../../../components/Buttons/MainButton'
-import { useStyles, UIContext } from '../../../components/UIContext'
-import { useAppDispatch } from '../../../store/hooks/reduxHooks'
-import { signInByFacebook, signUp } from '../../../store/reducers/ActionCreator'
+import { signUpValidationSchema } from '../../../common/validation';
+import { MainButton } from '../../../components/Buttons/MainButton';
+import { useStyles, UIContext } from '../../../components/UIContext';
+import { useAppDispatch } from '../../../store/hooks/reduxHooks';
+import {
+  signInByFacebook,
+  signUp,
+} from '../../../store/reducers/ActionCreator';
 
 interface SignUpFormProps {
-  onSuccess: () => void
+  onSuccess: () => void;
 }
 
 export const SignUpForm: FC<SignUpFormProps> = ({ onSuccess }) => {
-  const classes = useStyles()
-  const dispatch = useAppDispatch()
-  const { setAlert } = useContext(UIContext)
-  const [showPassword, setShowPassword] = useState(false)
-  const [showRepeatPassword, setShowRepeatPassword] = useState(false)
+  const classes = useStyles();
+  const dispatch = useAppDispatch();
+  const { setAlert } = useContext(UIContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
   const handleSignUp = (email: string, password: string, fullName: string) => {
-    dispatch(signUp(email, password, fullName, setAlert, onSuccess))
-  }
+    dispatch(signUp(email, password, fullName, setAlert, onSuccess));
+  };
 
   const handleSignUpByFacebook = () => {
-    dispatch(signInByFacebook(setAlert, onSuccess))
-  }
+    dispatch(signInByFacebook(setAlert, onSuccess));
+  };
 
-  const handleClickShowPassword = () => setShowPassword(!showPassword)
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   const handleClickShowRepeatPassword = () =>
-    setShowRepeatPassword(!showRepeatPassword)
+    setShowRepeatPassword(!showRepeatPassword);
 
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
   return (
     <Formik
@@ -58,9 +61,9 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onSuccess }) => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          handleSignUp(values.email, values.password, values.fullName)
-          setSubmitting(false)
-        }, 500)
+          handleSignUp(values.email, values.password, values.fullName);
+          setSubmitting(false);
+        }, 500);
       }}
       validationSchema={signUpValidationSchema}
     >
@@ -213,7 +216,7 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onSuccess }) => {
         </Form>
       )}
     </Formik>
-  )
-}
+  );
+};
 
-export default SignUpForm
+export default SignUpForm;

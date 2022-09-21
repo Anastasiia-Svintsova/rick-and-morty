@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import './CosmosBackground.scss'
+import React, { FC } from 'react';
+import './CosmosBackground.scss';
 
 export const CosmosBackground: FC = () => {
   return (
@@ -8,7 +8,7 @@ export const CosmosBackground: FC = () => {
       <div className='stars stars--medium' />
       <div className='stars stars--large' />
     </>
-  )
-}
+  );
+};
 
-export default CosmosBackground
+export default CosmosBackground;

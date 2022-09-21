@@ -1,20 +1,20 @@
-import { FC } from 'react'
+import { FC } from 'react';
 
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { Grid, Box, Button, Typography } from '@mui/material'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import { Link, useNavigate } from 'react-router-dom'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Grid, Box, Button, Typography } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { MEDIA_QUERY_MOBILE } from '../../common/constants'
-import { SignUpForm } from '../../components/forms/SignUpForm'
-import { useStyles } from '../../components/UIContext'
+import { MEDIA_QUERY_MOBILE } from '../../common/constants';
+import { SignUpForm } from '../../components/forms/SignUpForm';
+import { useStyles } from '../../components/UIContext';
 
 export const SignUpScreen: FC = () => {
-  const classes = useStyles()
-  const isMobile = useMediaQuery(MEDIA_QUERY_MOBILE)
-  const navigate = useNavigate()
+  const classes = useStyles();
+  const isMobile = useMediaQuery(MEDIA_QUERY_MOBILE);
+  const navigate = useNavigate();
 
-  const handleSuccess = () => navigate('/')
+  const handleSuccess = () => navigate('/');
 
   return (
     <Grid container className={`${classes.signScreen} ${classes.fullHeight}`}>
@@ -62,7 +62,7 @@ export const SignUpScreen: FC = () => {
         </Box>
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
-export default SignUpScreen
+export default SignUpScreen;

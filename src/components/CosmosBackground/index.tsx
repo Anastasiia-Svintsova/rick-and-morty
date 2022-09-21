@@ -1,1 +1,1 @@
-export * from './CosmosBackground'
+export * from './CosmosBackground';

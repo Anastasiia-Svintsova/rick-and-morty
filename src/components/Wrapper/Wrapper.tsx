@@ -1,16 +1,16 @@
-import React, { FC, ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react';
 
-import { Box, useMediaQuery } from '@mui/material'
+import { Box, useMediaQuery } from '@mui/material';
 
-import { MEDIA_QUERY_MOBILE, MEDIA_QUERY_TABLET } from '../../common/constants'
+import { MEDIA_QUERY_MOBILE, MEDIA_QUERY_TABLET } from '../../common/constants';
 
 interface WrapperProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export const Wrapper: FC<WrapperProps> = ({ children }) => {
-  const isMobile = useMediaQuery(MEDIA_QUERY_MOBILE)
-  const isTablet = useMediaQuery(MEDIA_QUERY_TABLET)
+  const isMobile = useMediaQuery(MEDIA_QUERY_MOBILE);
+  const isTablet = useMediaQuery(MEDIA_QUERY_TABLET);
 
   return (
     <Box
@@ -20,7 +20,7 @@ export const Wrapper: FC<WrapperProps> = ({ children }) => {
     >
       {children}
     </Box>
-  )
-}
+  );
+};
 
-export default Wrapper
+export default Wrapper;

@@ -1,6 +1,6 @@
-import { FC, useState, MouseEvent, useContext } from 'react'
+import { FC, useState, MouseEvent, useContext } from 'react';
 
-import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
   InputLabel,
   FilledInput,
@@ -10,41 +10,41 @@ import {
   TextField,
   FormControl,
   FormHelperText,
-} from '@mui/material'
-import { Field, Form, Formik } from 'formik'
+} from '@mui/material';
+import { Field, Form, Formik } from 'formik';
 
-import { signInValidationSchema } from '../../../common/validation'
-import { useAppDispatch } from '../../../store/hooks/reduxHooks'
+import { signInValidationSchema } from '../../../common/validation';
+import { useAppDispatch } from '../../../store/hooks/reduxHooks';
 import {
   signInByEmail,
   signInByFacebook,
-} from '../../../store/reducers/ActionCreator'
-import { MainButton } from '../../Buttons/MainButton'
-import { UIContext, useStyles } from '../../UIContext'
+} from '../../../store/reducers/ActionCreator';
+import { MainButton } from '../../Buttons/MainButton';
+import { UIContext, useStyles } from '../../UIContext';
 
 interface Props {
-  onSuccess: () => void
+  onSuccess: () => void;
 }
 
 export const SignInForm: FC<Props> = ({ onSuccess }) => {
-  const dispatch = useAppDispatch()
-  const [showPassword, setShowPassword] = useState(false)
-  const { setAlert } = useContext(UIContext)
-  const classes = useStyles()
+  const dispatch = useAppDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+  const { setAlert } = useContext(UIContext);
+  const classes = useStyles();
 
   const handleSignInByEmail = (email: string, password: string) => {
-    dispatch(signInByEmail(email, password, setAlert, onSuccess))
-  }
+    dispatch(signInByEmail(email, password, setAlert, onSuccess));
+  };
 
   const handleSignInByFacebook = () => {
-    dispatch(signInByFacebook(setAlert, onSuccess))
-  }
+    dispatch(signInByFacebook(setAlert, onSuccess));
+  };
 
-  const handleClickShowPassword = () => setShowPassword(!showPassword)
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
   return (
     <Formik
@@ -55,9 +55,9 @@ export const SignInForm: FC<Props> = ({ onSuccess }) => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          handleSignInByEmail(values.email, values.password)
-          setSubmitting(false)
-        }, 500)
+          handleSignInByEmail(values.email, values.password);
+          setSubmitting(false);
+        }, 500);
       }}
       validationSchema={signInValidationSchema}
     >
@@ -149,7 +149,7 @@ export const SignInForm: FC<Props> = ({ onSuccess }) => {
         </Form>
       )}
     </Formik>
-  )
-}
+  );
+};
 
-export default SignInForm
+export default SignInForm;

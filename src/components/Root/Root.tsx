@@ -1,36 +1,30 @@
-import React, { FC, useCallback, useEffect } from 'react'
+import React, { FC, useEffect } from 'react';
 
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-import { HomeScreen } from '../../screens/HomeScreen'
-import { SignInScreen } from '../../screens/SignInScreen'
-import { SignUpScreen } from '../../screens/SignUpScreen'
-import { useAppDispatch, useAppSelector } from '../../store/hooks/reduxHooks'
-import { getCharacters } from '../../store/reducers/ActionCreator'
-import { userSlice } from '../../store/reducers/UserSlice'
+import { HomeScreen } from '../../screens/HomeScreen';
+import { SignInScreen } from '../../screens/SignInScreen';
+import { SignUpScreen } from '../../screens/SignUpScreen';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/reduxHooks';
+import {
+  getCharacters,
+  getUser,
+  getLikedCharacters,
+} from '../../store/reducers/ActionCreator';
 
 export const Root: FC = () => {
-  const { user } = useAppSelector((state) => state.userReducer)
-  const { setUser } = userSlice.actions
-  const dispatch = useAppDispatch()
-
-  const getUser = useCallback(() => {
-    const auth = getAuth()
-
-    onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        dispatch(setUser(currentUser))
-      } else {
-        dispatch(setUser(null))
-      }
-    })
-  }, [dispatch, setUser])
+  const { user } = useAppSelector((state) => state.userReducer);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getUser()
-    dispatch(getCharacters())
-  }, [dispatch, getUser])
+    dispatch(getUser());
+    dispatch(getCharacters());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!user) return;
+    dispatch(getLikedCharacters(user.uid));
+  }, [dispatch, user]);
 
   return (
     <>
@@ -48,7 +42,7 @@ export const Root: FC = () => {
         </Routes>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Root
+export default Root;

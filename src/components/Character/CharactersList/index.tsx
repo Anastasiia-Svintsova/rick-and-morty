@@ -1,1 +1,1 @@
-export * from './CharacterList'
+export * from './CharacterList';

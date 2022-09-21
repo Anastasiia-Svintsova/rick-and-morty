@@ -1,24 +1,27 @@
-import { FC } from 'react'
+import { FC } from 'react';
 
-import { Grid, Box, Typography } from '@mui/material'
-import Backdrop from '@mui/material/Backdrop'
-import Fade from '@mui/material/Fade'
-import Modal from '@mui/material/Modal'
-import { Link } from 'react-router-dom'
+import { Grid, Box, Typography } from '@mui/material';
+import Backdrop from '@mui/material/Backdrop';
+import Fade from '@mui/material/Fade';
+import Modal from '@mui/material/Modal';
+import { Link } from 'react-router-dom';
 
-import { useAppSelector, useAppDispatch } from '../../../store/hooks/reduxHooks'
-import { commonSlice } from '../../../store/reducers/CommonSlice'
-import { CloseButton } from '../../Buttons/CloseButton'
-import { SignInForm } from '../../forms/SignInForm'
-import { useStyles } from '../../UIContext'
+import {
+  useAppSelector,
+  useAppDispatch,
+} from '../../../store/hooks/reduxHooks';
+import { commonSlice } from '../../../store/reducers/CommonSlice';
+import { CloseButton } from '../../Buttons/CloseButton';
+import { SignInForm } from '../../forms/SignInForm';
+import { useStyles } from '../../UIContext';
 
 export const SignInModal: FC = () => {
-  const { isModalOpen } = useAppSelector((state) => state.commonReducer)
-  const { closeModal } = commonSlice.actions
-  const dispatch = useAppDispatch()
-  const classes = useStyles()
+  const { isModalOpen } = useAppSelector((state) => state.commonReducer);
+  const { closeModal } = commonSlice.actions;
+  const dispatch = useAppDispatch();
+  const classes = useStyles();
 
-  const handleClose = () => dispatch(closeModal())
+  const handleClose = () => dispatch(closeModal());
 
   return (
     <Modal
@@ -71,7 +74,7 @@ export const SignInModal: FC = () => {
         </Grid>
       </Fade>
     </Modal>
-  )
-}
+  );
+};
 
-export default SignInModal
+export default SignInModal;

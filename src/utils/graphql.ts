@@ -3,7 +3,7 @@ import {
   InMemoryCache,
   DocumentNode,
   OperationVariables,
-} from '@apollo/client'
+} from '@apollo/client';
 
 export const request = async (
   query: DocumentNode,
@@ -12,10 +12,10 @@ export const request = async (
   const client = new ApolloClient({
     uri: 'https://rickandmortyapi.com/graphql',
     cache: new InMemoryCache(),
-  })
+  });
 
-  const response = await client.query({ query, variables })
-  const { data } = response
+  const response = await client.query({ query, variables });
+  const { data } = response;
 
-  return data
-}
+  return data;
+};

@@ -12,9 +12,9 @@ import {
   IconButton,
   Button,
 } from '@mui/material';
-import { User } from 'firebase/auth';
 
 import { Character, CharacterStatus } from '../../../types/Character';
+import { User } from '../../../types/User';
 import { useStyles } from '../../UIContext';
 
 interface CharacterCardProps {

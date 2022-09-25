@@ -40,6 +40,12 @@ const theme = createTheme({
   typography: {
     button: {
       color: '#fff',
+      letterSpacing: 4,
+      fontFamily: ['Bangers', 'sans-serif'].join(','),
+    },
+    body1: {
+      letterSpacing: 4,
+      fontFamily: ['Bangers', 'sans-serif'].join(','),
     },
   },
 });

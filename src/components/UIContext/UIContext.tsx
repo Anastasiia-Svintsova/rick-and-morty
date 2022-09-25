@@ -29,14 +29,10 @@ const hoverMainColor = {
 
 export const useStyles = makeStyles({
   root: {
-    padding: '20px 80px',
-
-    [theme.breakpoints.down('md')]: {
-      padding: '20px 50px',
-    },
-
-    [theme.breakpoints.down('sm')]: {
-      padding: '20px 24px',
+    '& .MuiPaginationItem-text': {
+      fontFamily: ['Bangers', 'sans-serif'].join(','),
+      letterSpacing: 4,
+      fontSize: 18,
     },
   },
   space: {

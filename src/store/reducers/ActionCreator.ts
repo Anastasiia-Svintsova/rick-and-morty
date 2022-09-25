@@ -26,14 +26,16 @@ import { characterSlice } from './CharacterSlice';
 import { userSlice } from './UserSlice';
 
 const { setUser, setLikedCharacters } = userSlice.actions;
-const { setCharacters } = characterSlice.actions;
+const { setCharacters, setAllCharactersNames, setIsCharactersLoading } =
+  characterSlice.actions;
 
 export const getUser = () => (dispatch: AppDispatch) => {
   const auth = getAuth();
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
-      dispatch(setUser(currentUser));
+      const { displayName, photoURL, uid } = currentUser;
+      dispatch(setUser({ displayName, photoURL, uid }));
     } else {
       dispatch(setUser(null));
     }
@@ -85,12 +87,13 @@ export const signUp =
         password
       );
       const { user } = userCredential;
+      const { displayName, photoURL, uid } = user;
 
       await updateProfile(user, {
         displayName: fullName,
       });
 
-      dispatch(setUser(user));
+      dispatch(setUser({ displayName, photoURL, uid }));
 
       if (onSuccess) onSuccess();
 
@@ -127,7 +130,10 @@ export const signInByEmail =
         password
       );
 
-      dispatch(setUser(userCredential.user));
+      const { user } = userCredential;
+      const { displayName, photoURL, uid } = user;
+
+      dispatch(setUser({ displayName, photoURL, uid }));
 
       if (onSuccess) onSuccess();
 
@@ -154,8 +160,11 @@ export const signInByFacebook =
       const provider = new FacebookAuthProvider();
       const auth = getAuth();
       const userCredential = await signInWithPopup(auth, provider);
+      const { user } = userCredential;
+      const { displayName, photoURL, uid } = user;
 
-      dispatch(setUser(userCredential.user));
+      dispatch(setUser({ displayName, photoURL, uid }));
+
       if (onSuccess) onSuccess();
 
       setAlert({
@@ -208,11 +217,28 @@ export const logOut =
 export const getCharacters =
   (page = 1, name = '') =>
   async (dispatch: AppDispatch) => {
+    dispatch(setIsCharactersLoading(true));
+
     try {
       const data = await request(GET_CHARACTERS, { page, name });
       dispatch(setCharacters(data.characters));
     } catch (error: any) {
       console.log(error);
+    } finally {
+      dispatch(setIsCharactersLoading(false));
+    }
+  };
+
+export const getAllCharactersNames =
+  (page = 1) =>
+  async (dispatch: AppDispatch) => {
+    const { characters } = await request(GET_CHARACTERS, { page });
+    const names = characters.results.map((item: Character) => item.name);
+
+    dispatch(setAllCharactersNames(names));
+
+    if (characters.info.next) {
+      dispatch(getAllCharactersNames(characters.info.next));
     }
   };
 

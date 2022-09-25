@@ -1,7 +1,8 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import { Avatar } from '@mui/material';
-import { User } from 'firebase/auth';
+
+import { User } from '../../types/User';
 
 interface UserAvatarProps {
   user: User;

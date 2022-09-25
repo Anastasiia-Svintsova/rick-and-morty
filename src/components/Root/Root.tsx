@@ -10,16 +10,24 @@ import {
   getCharacters,
   getUser,
   getLikedCharacters,
+  getAllCharactersNames,
 } from '../../store/reducers/ActionCreator';
 
 export const Root: FC = () => {
   const { user } = useAppSelector((state) => state.userReducer);
+  const { currentPage, nameParam: searchParam } = useAppSelector(
+    (state) => state.characterReducer
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getUser());
-    dispatch(getCharacters());
+    dispatch(getAllCharactersNames());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getCharacters(currentPage, searchParam));
+  }, [currentPage, dispatch, searchParam]);
 
   useEffect(() => {
     if (!user) return;

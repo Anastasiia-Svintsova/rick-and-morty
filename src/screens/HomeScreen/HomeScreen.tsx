@@ -4,11 +4,13 @@ import {
   CircularProgress,
   Pagination,
   Stack,
+  Typography,
   useMediaQuery,
 } from '@mui/material';
 
 import { MEDIA_QUERY_MOBILE } from '../../common/constants';
 import { CharacterList } from '../../components/Character/CharactersList';
+import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
 import { Search } from '../../components/Search/Search';
 import { useStyles } from '../../components/UIContext';
@@ -29,6 +31,7 @@ export const HomeScreen: FC = () => {
     nameParam,
     isCharactersLoading,
   } = useAppSelector((state) => state.characterReducer);
+  const { isUserDataLoading } = useAppSelector((state) => state.userReducer);
 
   const handlePaginationChange = (pageNumber: number) => {
     dispatch(setCurrentPage(pageNumber));
@@ -40,36 +43,56 @@ export const HomeScreen: FC = () => {
   };
 
   return (
-    <Wrapper>
+    <Stack className={classes.screenContainer}>
       <Header />
 
-      <Stack spacing={4} alignItems='center'>
-        <Search
-          options={allCharactersNames}
-          value={nameParam}
-          setValue={handleSearchParamChange}
-        />
+      <Wrapper>
+        {!isUserDataLoading ? (
+          <Stack spacing={4} alignItems='center'>
+            <Search
+              options={allCharactersNames}
+              value={nameParam}
+              setValue={handleSearchParamChange}
+            />
 
-        <Pagination
-          size={isMobile ? 'small' : 'large'}
-          count={totalPages}
-          page={currentPage}
-          color='primary'
-          onChange={(event, page) => handlePaginationChange(page)}
-          className={classes.root}
-        />
+            {characters && !!characters.length ? (
+              <Pagination
+                size={isMobile ? 'small' : 'large'}
+                count={totalPages}
+                page={currentPage}
+                color='primary'
+                onChange={(event, page) => handlePaginationChange(page)}
+                className={classes.root}
+              />
+            ) : (
+              <Typography>
+                {!isCharactersLoading && 'No characters with this name'}
+              </Typography>
+            )}
 
-        {isCharactersLoading ? (
+            {isCharactersLoading && (
+              <CircularProgress
+                color='inherit'
+                size={50}
+                sx={{ display: 'flex', m: 'auto' }}
+              />
+            )}
+
+            {characters && !isUserDataLoading && (
+              <CharacterList characters={characters} />
+            )}
+          </Stack>
+        ) : (
           <CircularProgress
             color='inherit'
             size={50}
             sx={{ display: 'flex', m: 'auto' }}
           />
-        ) : (
-          <>{characters && <CharacterList characters={characters} />}</>
         )}
-      </Stack>
-    </Wrapper>
+      </Wrapper>
+
+      <Footer />
+    </Stack>
   );
 };
 

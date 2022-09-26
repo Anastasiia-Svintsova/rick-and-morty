@@ -1,11 +1,9 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import characterReducer from './reducers/CharacterSlice';
-import commonReducer from './reducers/CommonSlice';
 import userReducer from './reducers/UserSlice';
 
 const rootReducer = combineReducers({
-  commonReducer,
   userReducer,
   characterReducer,
 });

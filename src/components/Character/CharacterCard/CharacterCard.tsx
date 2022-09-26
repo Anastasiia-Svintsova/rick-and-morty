@@ -12,6 +12,7 @@ import {
   IconButton,
   Button,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import { Character, CharacterStatus } from '../../../types/Character';
 import { User } from '../../../types/User';
@@ -33,8 +34,9 @@ export const CharacterCard: FC<CharacterCardProps> = ({
   const [statusColor, setStatusColor] = useState('info');
   const { palette } = useTheme();
   const classes = useStyles();
+  const navigate = useNavigate();
 
-  const { image, name, status, species, gender } = character;
+  const { image, name, status, species, gender, id } = character;
   const { primary, error, info } = palette;
 
   const getStatusColor = useCallback(() => {
@@ -61,6 +63,12 @@ export const CharacterCard: FC<CharacterCardProps> = ({
     onLikePress(character, isLiked);
   };
 
+  const handleCharacterDetailOpen = () => {
+    if (!user) return;
+
+    navigate(`/character/${id}`);
+  };
+
   useEffect(() => {
     getStatusColor();
   }, [getStatusColor]);
@@ -71,22 +79,24 @@ export const CharacterCard: FC<CharacterCardProps> = ({
         ' '
       )}
     >
-      <CardMedia
-        component='img'
-        height='300'
-        image={image}
-        alt={name}
-        loading='lazy'
-      />
-      <Box bgcolor={statusColor}>
-        <Typography color='white' variant='subtitle1'>
-          {status}
-        </Typography>
+      <Box onClick={handleCharacterDetailOpen}>
+        <CardMedia
+          component='img'
+          height='300'
+          image={image}
+          alt={name}
+          loading='lazy'
+        />
+        <Box bgcolor={statusColor}>
+          <Typography color='white' variant='subtitle1'>
+            {status}
+          </Typography>
+        </Box>
+        <CardContent>
+          <Typography variant='subtitle1'>{`Name: ${name}`}</Typography>
+          <Typography variant='subtitle1'>{`${species} - ${gender}`}</Typography>
+        </CardContent>
       </Box>
-      <CardContent>
-        <Typography variant='subtitle1'>{`Name: ${name}`}</Typography>
-        <Typography variant='subtitle1'>{`${species} - ${gender}`}</Typography>
-      </CardContent>
       {user && (
         <CardActions
           className={classes.flexGrow}
@@ -100,7 +110,9 @@ export const CharacterCard: FC<CharacterCardProps> = ({
               />
             </IconButton>
 
-            <Button color='info'>More Info</Button>
+            <Button color='info' onClick={handleCharacterDetailOpen}>
+              More Info
+            </Button>
           </Box>
         </CardActions>
       )}

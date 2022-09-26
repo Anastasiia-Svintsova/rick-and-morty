@@ -19,3 +19,25 @@ export const GET_CHARACTERS = gql`
     }
   }
 `;
+
+export const GET_SINGLE_CHARACTER = gql`
+  query Characters($id: ID!) {
+    character(id: $id) {
+      id
+      name
+      type
+      status
+      species
+      origin {
+        name
+      }
+      location {
+        name
+      }
+      image
+      episode {
+        episode
+      }
+    }
+  }
+`;

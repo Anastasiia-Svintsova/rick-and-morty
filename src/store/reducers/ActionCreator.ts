@@ -20,14 +20,19 @@ import { AlertProps } from '../../components/UIContext';
 import { Character } from '../../types/Character';
 import { FirebaseErrorMessage } from '../../types/firebaseError';
 import { request } from '../../utils/graphql';
-import { GET_CHARACTERS } from '../../utils/queries';
+import { GET_CHARACTERS, GET_SINGLE_CHARACTER } from '../../utils/queries';
 import { AppDispatch } from '../store';
 import { characterSlice } from './CharacterSlice';
 import { userSlice } from './UserSlice';
 
 const { setUser, setLikedCharacters } = userSlice.actions;
-const { setCharacters, setAllCharactersNames, setIsCharactersLoading } =
-  characterSlice.actions;
+const {
+  setCharacters,
+  setAllCharactersNames,
+  setIsCharactersLoading,
+  setCurrentCharacter,
+  setIsCharacterLoading,
+} = characterSlice.actions;
 
 export const getUser = () => (dispatch: AppDispatch) => {
   const auth = getAuth();
@@ -226,6 +231,20 @@ export const getCharacters =
       console.log(error);
     } finally {
       dispatch(setIsCharactersLoading(false));
+    }
+  };
+
+export const getSingleCharacter =
+  (id: string) => async (dispatch: AppDispatch) => {
+    dispatch(setIsCharacterLoading(true));
+
+    try {
+      const data = await request(GET_SINGLE_CHARACTER, { id });
+      dispatch(setCurrentCharacter(data.character));
+    } catch (error: any) {
+      console.log(error);
+    } finally {
+      dispatch(setIsCharacterLoading(false));
     }
   };
 

@@ -5,6 +5,16 @@ export interface Character {
   status: string;
   species: string;
   gender: string;
+  type: string;
+  origin: {
+    name: string;
+  };
+  location: {
+    name: string;
+  };
+  episode: {
+    episode: string;
+  }[];
 }
 
 export interface CharactersQuery {

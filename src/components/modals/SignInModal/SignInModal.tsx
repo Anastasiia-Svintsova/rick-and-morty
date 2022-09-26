@@ -6,22 +6,20 @@ import Fade from '@mui/material/Fade';
 import Modal from '@mui/material/Modal';
 import { Link } from 'react-router-dom';
 
-import {
-  useAppSelector,
-  useAppDispatch,
-} from '../../../store/hooks/reduxHooks';
-import { commonSlice } from '../../../store/reducers/CommonSlice';
 import { CloseButton } from '../../Buttons/CloseButton';
 import { SignInForm } from '../../forms/SignInForm';
 import { useStyles } from '../../UIContext';
 
-export const SignInModal: FC = () => {
-  const { isModalOpen } = useAppSelector((state) => state.commonReducer);
-  const { closeModal } = commonSlice.actions;
-  const dispatch = useAppDispatch();
-  const classes = useStyles();
+interface SignInModalProps {
+  isModalOpen: boolean;
+  handleClose: () => void;
+}
 
-  const handleClose = () => dispatch(closeModal());
+export const SignInModal: FC<SignInModalProps> = ({
+  isModalOpen,
+  handleClose,
+}) => {
+  const classes = useStyles();
 
   return (
     <Modal

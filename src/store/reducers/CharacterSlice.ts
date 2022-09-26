@@ -15,6 +15,8 @@ interface State {
   totalCharactersAmount: number;
   currentPage: number;
   nameParam: string;
+  currentCharacter: null | Character;
+  isCharacterLoading: boolean;
 }
 
 const initialState: State = {
@@ -25,6 +27,8 @@ const initialState: State = {
   totalCharactersAmount: 0,
   currentPage: 1,
   nameParam: '',
+  currentCharacter: null,
+  isCharacterLoading: false,
 };
 
 export const characterSlice = createSlice({
@@ -49,9 +53,14 @@ export const characterSlice = createSlice({
       );
     },
     setSearchParam(state, action: PayloadAction<searchParam>) {
-      console.log('handled');
       state.nameParam = action.payload.nameParam;
       state.currentPage = action.payload.currentPage;
+    },
+    setCurrentCharacter(state, action: PayloadAction<Character>) {
+      state.currentCharacter = action.payload;
+    },
+    setIsCharacterLoading(state, action: PayloadAction<boolean>) {
+      state.isCharacterLoading = action.payload;
     },
   },
 });

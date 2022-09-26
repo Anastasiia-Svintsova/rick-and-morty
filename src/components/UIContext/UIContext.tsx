@@ -35,6 +35,9 @@ export const useStyles = makeStyles({
       fontSize: 18,
     },
   },
+  screenContainer: {
+    minHeight: '100vh',
+  },
   space: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -43,6 +46,10 @@ export const useStyles = makeStyles({
   flexColumn: {
     display: 'flex',
     flexDirection: 'column',
+  },
+  flexRow: {
+    display: 'flex',
+    flexDirection: 'row',
   },
   flexGrow: {
     flexGrow: 1,
@@ -65,11 +72,19 @@ export const useStyles = makeStyles({
   fullWidth: {
     width: '100%',
   },
+  circle: {
+    borderRadius: '50%',
+  },
   linkStyle: {
     textDecoration: 'none',
     color: theme.palette.light.main,
     lineHeight: 1,
     ...hoverMainColor,
+  },
+  linkStyleMain: {
+    textDecoration: 'none',
+    color: theme.palette.primary.main,
+    lineHeight: 1,
   },
   modalContainer: {
     position: 'relative',
@@ -91,6 +106,18 @@ export const useStyles = makeStyles({
       boxShadow: `0px 8px 10px 1px rgba(33,33,33,.2)`,
       cursor: 'pointer',
     },
+  },
+  footer: {
+    display: 'flex',
+    justifySelf: 'flex-end',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    height: 80,
+    width: '100%',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.secondary.main,
+    zIndex: 2,
   },
 });
 

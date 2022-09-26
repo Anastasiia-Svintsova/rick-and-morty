@@ -17,6 +17,7 @@ export const Wrapper: FC<WrapperProps> = ({ children }) => {
       px={(isMobile && 3) || (isTablet && 5) || 10}
       pt={((isMobile || isTablet) && 15) || 20}
       pb={(isMobile && 3) || 8}
+      flexGrow={1}
     >
       {children}
     </Box>

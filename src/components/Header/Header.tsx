@@ -18,7 +18,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MEDIA_QUERY_MOBILE } from '../../common/constants';
 import { useAppDispatch, useAppSelector } from '../../store/hooks/reduxHooks';
 import { logOut } from '../../store/reducers/ActionCreator';
-import { commonSlice } from '../../store/reducers/CommonSlice';
 import { CosmosBackground } from '../CosmosBackground';
 import { SignInModal } from '../modals/SignInModal';
 import { useStyles, UIContext } from '../UIContext';
@@ -29,14 +28,17 @@ export const Header: FC = () => {
   const isMobile = useMediaQuery(MEDIA_QUERY_MOBILE);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { setAlert } = useContext(UIContext);
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { user, isUserDataLoading } = useAppSelector(
     (state) => state.userReducer
   );
-  const { openModal } = commonSlice.actions;
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const { setAlert } = useContext(UIContext);
 
-  const handleOpenModal = () => dispatch(openModal());
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   const handleMenu = (event: MouseEvent<HTMLElement>) =>
     setAnchorEl(event.currentTarget);
@@ -108,7 +110,7 @@ export const Header: FC = () => {
             </Link>
           </Box>
         </Toolbar>
-        <SignInModal />
+        <SignInModal isModalOpen={isModalOpen} handleClose={handleCloseModal} />
       </AppBar>
     </Box>
   );

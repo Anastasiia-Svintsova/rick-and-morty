@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# Rick and Morty
+
+## Demo link:
+Access Rick and Morty app at [rick-and-morty-d53c4.web.app](https://rick-and-morty-d53c4.web.app/)
+
+## Table of Content:
+- [About The App](#about-the-app)
+- [Technologies](#technologies)
+- [Status](#status)
+
+## About The App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+[Rick and Morty] is an app that uses [Rick and Morty API](https://rickandmortyapi.com/). 
 
-In the project directory, you can run:
+On the Home Screen, you can see all characters with the main info about them. There is a possibility for authored users to like characters and open a page with more info about a character.
 
-### `npm start`
+- you can log in or register via email or Facebook account. Use base email and password if you don't want to register but want to check how it works (email: user@user.com, password: user123456789) 
+- use pagination to switch between pages and see more characters
+- use autocomplete to find characters by their name
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies and tools
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- React
+- React Router
+- Redux Toolkit
+- Typescript
+- Firebase
+- GraphQL
+- Formik
+- yup
+- npm
 
-### `npm test`
+# Status
+[Rick and Morty app] is still in progress.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

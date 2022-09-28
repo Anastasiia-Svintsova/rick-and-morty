@@ -12,7 +12,7 @@ Access Rick and Morty app at [rick-and-morty-d53c4.web.app](https://rick-and-mor
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[Rick and Morty] is an app that uses [Rick and Morty API](https://rickandmortyapi.com/). 
+Rick and Morty is an app that uses [Rick and Morty API](https://rickandmortyapi.com/). 
 
 On the Home Screen, you can see all characters with the main info about them. There is a possibility for authored users to like characters and open a page with more info about a character.
 
@@ -33,7 +33,7 @@ On the Home Screen, you can see all characters with the main info about them. Th
 - npm
 
 # Status
-[Rick and Morty app] is still in progress.
+Rick and Morty app is still in progress.
 
 
 
